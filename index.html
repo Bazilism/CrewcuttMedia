@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crewcutt Media | Cinematic Art Production</title>
+    <meta name="description" content="Crewcutt Media is a modern creative production media house crafting cinematic brand films, high-energy commercials, CGI, and immersive digital stories.">
+    <!-- Typography: Syne, Outfit, Inter & Space Mono (For metadata data labels) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Immersive Cinematic Film Grain Overlay -->
+    <div class="film-grain"></div>
+    <div class="scanlines"></div>
+
+    <!-- Interactive Canvas Background (Oscilloscope Waves) -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Custom Magnetic Physics Cursor -->
+    <div class="custom-cursor">
+        <span class="cursor-label">PLAY</span>
+    </div>
+    <div class="custom-cursor-dot"></div>
+
+    <!-- Header Navigation -->
+    <header class="main-header glassmorphic">
+        <div class="header-container">
+            <a href="#" class="logo magnetic-target">
+                <span class="logo-accent">//</span> CREWCUTT <span class="logo-sub">MEDIA</span>
+            </a>
+            
+            <nav class="nav-menu">
+                <a href="#showcase" class="nav-link magnetic-target">Work</a>
+                <a href="#process" class="nav-link magnetic-target">Process</a>
+                <a href="#capabilities" class="nav-link magnetic-target">Capabilities</a>
+                <a href="#contact" class="nav-link magnetic-target">Contact</a>
+            </nav>
+
+            <div class="header-controls">
+                <button class="sound-toggle magnetic-target" aria-label="Toggle sound lounge effects">
+                    <span class="sound-label">SONAR AUDIO</span>
+                    <span class="sound-visualizer">
+                        <span class="sound-bar bar-1"></span>
+                        <span class="sound-bar bar-2"></span>
+                        <span class="sound-bar bar-3"></span>
+                        <span class="sound-bar bar-4"></span>
+                    </span>
+                    <span class="sound-status">OFF</span>
+                </button>
+                <a href="#contact" class="btn-primary magnetic-target">Initiate Brief</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section (Viewed as an Anamorphic Camera Monitor Viewfinder) -->
+        <section class="hero-section" id="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="hero-tag-wrapper">
+                        <span class="hero-tag">SYS STATUS: ACTIVE // CAM A</span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span>WE CUT THROUGH</span>
+                        <span>THE NOISE.</span>
+                        <span class="gradient-text">CRAFT ART.</span>
+                    </h1>
+                    <p class="hero-description">
+                        Crewcutt Media is an avant-garde creative production house crafting high-energy commercials, cinematic documentaries, and photorealistic CGI that demand visceral attention.
+                    </p>
+                    <div class="hero-cta-group">
+                        <a href="#contact" class="btn-primary btn-large magnetic-target">Start Production</a>
+                        <a href="#showcase" class="btn-secondary btn-large magnetic-target">Explore Archive</a>
+                    </div>
+                </div>
+
+                <!-- Showreel Widescreen Viewfinder -->
+                <div class="showreel-widget-wrapper">
+                    <!-- Viewfinder Frame Technical Markings -->
+                    <div class="viewfinder-corner top-left"></div>
+                    <div class="viewfinder-corner top-right"></div>
+                    <div class="viewfinder-corner bottom-left"></div>
+                    <div class="viewfinder-corner bottom-right"></div>
+                    
+                    <div class="viewfinder-top-bar">
+                        <span class="tech-label rec-indicator"><span class="rec-dot"></span>REC</span>
+                        <span class="tech-label">TC 00:01:45:00</span>
+                        <span class="tech-label">24 FPS</span>
+                    </div>
+                    
+                    <div class="viewfinder-bottom-bar">
+                        <span class="tech-label">SHUTTER 180°</span>
+                        <span class="tech-label">ISO 320</span>
+                        <span class="tech-label">f/1.2</span>
+                    </div>
+
+                    <div class="showreel-widget magnetic-target" data-cursor="PLAY">
+                        <div class="showreel-preview-wrapper">
+                            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80" alt="Crewcutt Showreel Cinematic Teaser" class="showreel-img">
+                            <div class="showreel-overlay"></div>
+                            <div class="showreel-content">
+                                <div class="showreel-play-btn">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Focal crosshairs inside the viewfinder -->
+                    <div class="viewfinder-crosshair"></div>
+                </div>
+            </div>
+            
+            <div class="hero-scroll-indicator">
+                <span class="scroll-text">SCRUB SCROLL DOWN</span>
+                <span class="scroll-line"></span>
+            </div>
+        </section>
+
+        <!-- Showcase / Portfolio Section -->
+        <section class="showcase-section" id="showcase">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <span class="section-tag">// SELECTED PROJECTS</span>
+                        <h2 class="section-title">THE ARCHIVE</h2>
+                    </div>
+                    <!-- Portfolio Filters -->
+                    <div class="portfolio-filters">
+                        <button class="filter-btn active magnetic-target" data-filter="all">All</button>
+                        <button class="filter-btn magnetic-target" data-filter="films">Films</button>
+                        <button class="filter-btn magnetic-target" data-filter="commercials">Commercials</button>
+                        <button class="filter-btn magnetic-target" data-filter="cgi">CGI & VFX</button>
+                    </div>
+                </div>
+
+                <div class="portfolio-grid">
+                    <!-- Project 01 (Commercial) -->
+                    <div class="portfolio-card glassmorphic" data-category="commercials" data-cursor="VIEW">
+                        <div class="card-viewfinder-wrapper">
+                            <!-- Technical frame crop guides -->
+                            <div class="card-crop-corner tl"></div>
+                            <div class="card-crop-corner tr"></div>
+                            <div class="card-crop-corner bl"></div>
+                            <div class="card-crop-corner br"></div>
+                            <div class="card-meta-top">
+                                <span>CAM A // PR-01</span>
+                                <span>ISO 400</span>
+                            </div>
+                            <div class="card-meta-bottom">
+                                <span>50mm Anamorphic</span>
+                                <span>180°</span>
+                            </div>
+                            
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=800&q=80" alt="The Electric Hypercar Commercial" class="portfolio-img">
+                                <div class="card-overlay"></div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <span class="card-tag">Commercial</span>
+                                <span class="card-year">2026</span>
+                            </div>
+                            <h3 class="card-title">THE ELECTRIC SURGE</h3>
+                            <p class="card-description">A futuristic cinematic commercial launching the next-generation carbon electric hypercar.</p>
+                            <span class="card-link">Explore Reel →</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 02 (Films) -->
+                    <div class="portfolio-card glassmorphic" data-category="films" data-cursor="VIEW">
+                        <div class="card-viewfinder-wrapper">
+                            <div class="card-crop-corner tl"></div>
+                            <div class="card-crop-corner tr"></div>
+                            <div class="card-crop-corner bl"></div>
+                            <div class="card-crop-corner br"></div>
+                            <div class="card-meta-top">
+                                <span>CAM B // PR-02</span>
+                                <span>ISO 800</span>
+                            </div>
+                            <div class="card-meta-bottom">
+                                <span>35mm Spherical</span>
+                                <span>172.8°</span>
+                            </div>
+                            
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Silent Echoes Short Film" class="portfolio-img">
+                                <div class="card-overlay"></div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <span class="card-tag">Documentary / Short</span>
+                                <span class="card-year">2025</span>
+                            </div>
+                            <h3 class="card-title">SILENT ECHOES</h3>
+                            <p class="card-description">An immersive, character-driven documentary exploring the raw silence of extreme alpine explorers.</p>
+                            <span class="card-link">Explore Reel →</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 03 (CGI) -->
+                    <div class="portfolio-card glassmorphic" data-category="cgi" data-cursor="VIEW">
+                        <div class="card-viewfinder-wrapper">
+                            <div class="card-crop-corner tl"></div>
+                            <div class="card-crop-corner tr"></div>
+                            <div class="card-crop-corner bl"></div>
+                            <div class="card-crop-corner br"></div>
+                            <div class="card-meta-top">
+                                <span>RENDER // PR-03</span>
+                                <span>UNREAL 5.4</span>
+                            </div>
+                            <div class="card-meta-bottom">
+                                <span>CGI Widescreen</span>
+                                <span>60 FPS</span>
+                            </div>
+                            
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80" alt="Cyber City 2099 CGI" class="portfolio-img">
+                                <div class="card-overlay"></div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <span class="card-tag">CGI & Simulation</span>
+                                <span class="card-year">2026</span>
+                            </div>
+                            <h3 class="card-title">CYBER CITY 2099</h3>
+                            <p class="card-description">State-of-the-art 3D simulation and photorealistic VFX environment worldbuilding for sci-fi cinematic.</p>
+                            <span class="card-link">Explore CGI →</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 04 (Commercials / Social) -->
+                    <div class="portfolio-card glassmorphic" data-category="commercials" data-cursor="VIEW">
+                        <div class="card-viewfinder-wrapper">
+                            <div class="card-crop-corner tl"></div>
+                            <div class="card-crop-corner tr"></div>
+                            <div class="card-crop-corner bl"></div>
+                            <div class="card-crop-corner br"></div>
+                            <div class="card-meta-top">
+                                <span>CAM A // PR-04</span>
+                                <span>ISO 320</span>
+                            </div>
+                            <div class="card-meta-bottom">
+                                <span>85mm Portrait</span>
+                                <span>180°</span>
+                            </div>
+                            
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80" alt="Rogue Beat Music Production" class="portfolio-img">
+                                <div class="card-overlay"></div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <span class="card-tag">Music Campaign</span>
+                                <span class="card-year">2025</span>
+                            </div>
+                            <h3 class="card-title">ROGUE BEAT</h3>
+                            <p class="card-description">A sensory-heavy, fast-paced commercial and visual campaign with dynamic editing & neon lighting.</p>
+                            <span class="card-link">Explore Reel →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section (Styled as a Cinema Editing Timeline Ruler) -->
+        <section class="process-section" id="process">
+            <div class="container">
+                <span class="section-tag">// LOGISTICS TRACK</span>
+                <h2 class="section-title">TIMELINE PIPELINE</h2>
+                
+                <div class="timeline-container">
+                    <!-- Dynamic Progress Scrubber Line -->
+                    <div class="timeline-line">
+                        <div class="timeline-progress"></div>
+                    </div>
+
+                    <!-- Step 1 (Pre-Production) -->
+                    <div class="timeline-step glassmorphic" id="step-1">
+                        <div class="step-marker">
+                            <span class="step-num">01</span>
+                        </div>
+                        <div class="step-content">
+                            <div class="step-header-meta">
+                                <span class="step-tag">Phase One</span>
+                                <span class="timecode-stamp">TC-01:00:00:00 [START]</span>
+                            </div>
+                            <h3 class="step-title">PRE-PRODUCTION & LOGISTICS</h3>
+                            <p class="step-desc">This is where the canvas takes shape. We script cinematic blueprints, sketch detailed storyboards, model lighting parameters, and establish visual directors' plans. Zero frame is left unmapped.</p>
+                            <div class="step-details">
+                                <span class="badge">Script Layout</span>
+                                <span class="badge">Mood Composition</span>
+                                <span class="badge">Aesthetic Bible</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 (Production) -->
+                    <div class="timeline-step glassmorphic" id="step-2">
+                        <div class="step-marker">
+                            <span class="step-num">02</span>
+                        </div>
+                        <div class="step-content">
+                            <div class="step-header-meta">
+                                <span class="step-tag">Phase Two</span>
+                                <span class="timecode-stamp">TC-01:08:45:00 [CAPTURE]</span>
+                            </div>
+                            <h3 class="step-title">THE CAPTURE (PRODUCTION)</h3>
+                            <p class="step-desc">Equipped with cinematic Arri/Red systems, high-end anamorphic prime elements, and spatial sound modules, we record raw frames. Every take is optimized for lighting aesthetics and compositional narrative weight.</p>
+                            <div class="step-details">
+                                <span class="badge">Anamorphic Sets</span>
+                                <span class="badge">Stage Direction</span>
+                                <span class="badge">Lighting Design</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 (Post & CGI) -->
+                    <div class="timeline-step glassmorphic" id="step-3">
+                        <div class="step-marker">
+                            <span class="step-num">03</span>
+                        </div>
+                        <div class="step-content">
+                            <div class="step-header-meta">
+                                <span class="step-tag">Phase Three</span>
+                                <span class="timecode-stamp">TC-01:16:30:12 [ASSEMBLE]</span>
+                            </div>
+                            <h3 class="step-title">THE RENDER & COLOR (POST)</h3>
+                            <p class="step-desc">In the digital laboratory, we layer raw assets. Precision narrative assembly, photorealistic CGI rendering in Unreal Engine 5, complex green screen compositing, and DaVinci color grading to sculpt deep tone.</p>
+                            <div class="step-details">
+                                <span class="badge">CGI Composition</span>
+                                <span class="badge">DaVinci Sculpting</span>
+                                <span class="badge">Soundscapes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 (Master) -->
+                    <div class="timeline-step glassmorphic" id="step-4">
+                        <div class="step-marker">
+                            <span class="step-num">04</span>
+                        </div>
+                        <div class="step-content">
+                            <div class="step-header-meta">
+                                <span class="step-tag">Phase Four</span>
+                                <span class="timecode-stamp">TC-01:24:59:23 [MASTER]</span>
+                            </div>
+                            <h3 class="step-title">THE FINAL OUTPUT (DELIVERY)</h3>
+                            <p class="step-desc">Your cinematic master file is compiled and optimized. We deliver 4K ProRes source file master blocks, framed and formatted in multiple aspect ratios for maximum theatrical, broadcast, or social release.</p>
+                            <div class="step-details">
+                                <span class="badge">4K ProRes 4444</span>
+                                <span class="badge">Multi-Aspect Maps</span>
+                                <span class="badge">Stereo Master</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Capabilities & Services Section -->
+        <section class="capabilities-section" id="capabilities">
+            <div class="container">
+                <span class="section-tag">// TECHNICAL CAPABILITIES</span>
+                <h2 class="section-title">CAPABILITIES</h2>
+
+                <div class="accordion-container">
+                    <!-- Capability 1 -->
+                    <div class="accordion-item glassmorphic active">
+                        <div class="accordion-header magnetic-target">
+                            <div class="header-main">
+                                <span class="acc-number">[01]</span>
+                                <h3 class="acc-title">CINEMATIC VIDEO PRODUCTION</h3>
+                            </div>
+                            <span class="acc-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="accordion-body">
+                            <div class="acc-body-grid">
+                                <div class="acc-text">
+                                    <p>We deploy professional video campaigns, visual branding stories, high-end short films, and commercial scripts. Outfitted with high-grade digital platforms, our crew operates seamlessly across global locations.</p>
+                                    <ul class="acc-list">
+                                        <li>High-end Commercial Reels</li>
+                                        <li>Brand Identity Documentaries</li>
+                                        <li>Director's Short Screenplays</li>
+                                        <li>Social Campaign Packages</li>
+                                    </ul>
+                                </div>
+                                <div class="acc-preview-box">
+                                    <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=80" alt="Cinematic Production Vibe" class="acc-preview-img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Capability 2 -->
+                    <div class="accordion-item glassmorphic">
+                        <div class="accordion-header magnetic-target">
+                            <div class="header-main">
+                                <span class="acc-number">[02]</span>
+                                <h3 class="acc-title">PHOTOREALISTIC VFX & CGI</h3>
+                            </div>
+                            <span class="acc-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="accordion-body">
+                            <div class="acc-body-grid">
+                                <div class="acc-text">
+                                    <p>We render the non-existent. Incorporating Unreal Engine 5, Blender, and specialized composition suites, we build photorealistic environments, custom VFX assets, and virtual cinematic soundstages.</p>
+                                    <ul class="acc-list">
+                                        <li>3D Product Simulation</li>
+                                        <li>Anamorphic Virtual Sets</li>
+                                        <li>Unreal Engine World Building</li>
+                                        <li>Photorealistic Composits</li>
+                                    </ul>
+                                </div>
+                                <div class="acc-preview-box">
+                                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80" alt="CGI VFX Vibe" class="acc-preview-img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Capability 3 -->
+                    <div class="accordion-item glassmorphic">
+                        <div class="accordion-header magnetic-target">
+                            <div class="header-main">
+                                <span class="acc-number">[03]</span>
+                                <h3 class="acc-title">CREATIVE DIRECTION & SCOPE</h3>
+                            </div>
+                            <span class="acc-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="accordion-body">
+                            <div class="acc-body-grid">
+                                <div class="acc-text">
+                                    <p>Visually arresting footage must align with structural vision. We draft scripts, lay storyboard grids, curate dynamic timing plans, and synchronize layouts to target narrative goals perfectly.</p>
+                                    <ul class="acc-list">
+                                        <li>Visual Storyboards & Grids</li>
+                                        <li>Cinematic Mood Curation</li>
+                                        <li>Scriptwriting & Script Doctors</li>
+                                        <li>Multi-Aspect Platform Ratios</li>
+                                    </ul>
+                                </div>
+                                <div class="acc-preview-box">
+                                    <img src="https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?auto=format&fit=crop&w=600&q=80" alt="Creative Directing Vibe" class="acc-preview-img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Lounge -->
+        <section class="contact-section" id="contact">
+            <div class="contact-glow"></div>
+            <div class="container contact-container">
+                <div class="contact-info">
+                    <span class="section-tag">// DIGITAL LOUNGE</span>
+                    <h2 class="section-title">INITIATE GRID</h2>
+                    <p class="contact-subtitle">Transmit your visual brief, project budget parameters, or creative concepts directly into our studio timeline. Let's build together.</p>
+                    
+                    <div class="studio-status-box glassmorphic">
+                        <div class="status-indicator">
+                            <span class="pulse-dot"></span>
+                            <span class="status-text">SYSTEM: ONLINE // ACCEPTING Q3</span>
+                        </div>
+                        <div class="clock-display">
+                            <span class="clock-label">STUDIO TC:</span>
+                            <span class="clock-time" id="studio-time">00:00:00 PM</span>
+                        </div>
+                        <div class="coordinates-label">HQ COORD: 45.4215° N, 75.6972° W</div>
+                    </div>
+
+                    <div class="contact-meta">
+                        <div class="meta-item">
+                            <span class="meta-title">Transmit Feed</span>
+                            <a href="mailto:hello@crewcutt.media" class="meta-link magnetic-target">hello@crewcutt.media</a>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-title">Voice Link</span>
+                            <a href="tel:+18005552739" class="meta-link magnetic-target">+1 (800) 555-CREW</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper glassmorphic">
+                    <form class="contact-form" id="main-contact-form" novalidate>
+                        <div class="form-row">
+                            <div class="input-group">
+                                <input type="text" id="name" name="name" required placeholder=" ">
+                                <label for="name">YOUR NAME // IDENTIFIER</label>
+                                <span class="input-glow"></span>
+                            </div>
+                            <div class="input-group">
+                                <input type="email" id="email" name="email" required placeholder=" ">
+                                <label for="email">TRANSMIT EMAIL</label>
+                                <span class="input-glow"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <select id="project-type" name="project-type" required>
+                                <option value="" disabled selected hidden></option>
+                                <option value="commercial">Commercial Video Campaign</option>
+                                <option value="film">Narrative/Short Film Production</option>
+                                <option value="cgi-vfx">CGI / 3D Visual Effects</option>
+                                <option value="other">Something Entirely Custom</option>
+                            </select>
+                            <label for="project-type" class="select-label">SELECT BLUEPRINT CHANNEL</label>
+                            <span class="input-glow"></span>
+                        </div>
+
+                        <div class="input-group">
+                            <textarea id="brief" name="brief" required placeholder=" " rows="4"></textarea>
+                            <label for="brief">THE BRIEF // CORE SCENARIO</label>
+                            <span class="input-glow"></span>
+                        </div>
+
+                        <button type="submit" class="btn-primary btn-submit btn-large magnetic-target">
+                            <span class="submit-text">TRANSMIT BRIEF</span>
+                            <span class="submit-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Custom Cinema Modal (Video Theatre) -->
+    <div class="modal-theatre" id="showreel-modal" role="dialog" aria-modal="true">
+        <div class="modal-bg"></div>
+        <div class="modal-wrapper">
+            <button class="modal-close magnetic-target" aria-label="Close Theatre">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="custom-video-player glassmorphic">
+                <!-- Cinema video clip (open stock loop from Pexels) -->
+                <video id="theatre-video" src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c05fba1b3de4dcc9c940b3cb1c572a1e&profile_id=165&oauth2_token_id=57447761" preload="auto" playsinline></video>
+                
+                <!-- Video Custom Controls Overlay -->
+                <div class="player-controls">
+                    <!-- Progress Scrubber -->
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-filled"></div>
+                            <div class="progress-handle"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="controls-row">
+                        <div class="controls-left">
+                            <button class="play-pause-btn control-btn magnetic-target" aria-label="Play/Pause">
+                                <svg class="play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5V19L19 12L8 5Z"/>
+                                </svg>
+                                <svg class="pause-icon hidden" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6 19H10V5H6V19ZM14 5V19H18V5H14V5Z"/>
+                                </svg>
+                            </button>
+                            <span class="video-time">00:00 / 00:00</span>
+                        </div>
+                        
+                        <div class="controls-right">
+                            <!-- Speed Button -->
+                            <button class="speed-btn control-btn magnetic-target">1.0x</button>
+                            
+                            <!-- Volume Container -->
+                            <div class="volume-container">
+                                <button class="volume-btn control-btn magnetic-target" aria-label="Mute/Unmute">
+                                    <svg class="vol-icon-high" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                                    </svg>
+                                    <svg class="vol-icon-mute hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                                        <line x1="23" y1="9" x2="17" y2="15"/>
+                                        <line x1="17" y1="9" x2="23" y2="15"/>
+                                    </svg>
+                                </button>
+                                <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.8">
+                            </div>
+                            
+                            <!-- Fullscreen Button -->
+                            <button class="fullscreen-btn control-btn magnetic-target" aria-label="Toggle Fullscreen">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- System Success Notification -->
+    <div class="notification-toast glassmorphic" id="success-toast" role="status">
+        <div class="toast-indicator"></div>
+        <div class="toast-message">
+            <h4>SYS FEED TRANSMITTED</h4>
+            <p>Brief uploaded to the studio grid successfully.</p>
+        </div>
+    </div>
+
+    <!-- Application Core Script -->
+    <script src="app.js"></script>
+</body>
+</html>
