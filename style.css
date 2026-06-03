@@ -1993,3 +1993,170 @@ button, input, select, textarea {
     font-size: 0.75rem;
     color: var(--text-secondary);
 }
+
+/* ==========================================================================
+   CREWCUTT MEDIA // COMPREHENSIVE MOBILE RESPONSIVE OVERRIDES
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .hero-section {
+        padding-top: 140px;
+        padding-bottom: 80px;
+    }
+    .main-header {
+        top: 12px;
+        width: calc(100% - 32px);
+    }
+    .acc-body-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px 30px 20px;
+    }
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    .hero-title {
+        font-size: 2.8rem;
+    }
+    .timeline-step {
+        padding: 24px;
+        gap: 20px;
+    }
+    .timeline-line {
+        left: 20px;
+    }
+    .modal-wrapper {
+        width: 95%;
+    }
+    .contact-form-wrapper {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 550px) {
+    .logo {
+        font-size: 1rem;
+    }
+    .logo-sub {
+        font-size: 0.55rem;
+        padding: 1px 4px;
+    }
+    .main-header {
+        padding: 10px 16px;
+    }
+    .btn-primary {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+    }
+    .hero-section {
+        padding-top: 120px;
+        padding-bottom: 60px;
+    }
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    .hero-description {
+        margin-bottom: 30px;
+    }
+    .showreel-widget-wrapper {
+        padding: 16px;
+    }
+    .showreel-preview-wrapper {
+        padding-top: 56.25%; /* 16:9 aspect on mobile for video height */
+    }
+    .viewfinder-top-bar, .viewfinder-bottom-bar {
+        left: 20px;
+        right: 20px;
+        font-size: 0.55rem;
+    }
+    /* Hide non-essential metadata on small mobile screens to prevent overlaps */
+    .viewfinder-top-bar span:nth-child(3),
+    .viewfinder-bottom-bar span:nth-child(1) {
+        display: none;
+    }
+    .portfolio-grid {
+        gap: 20px;
+    }
+    .card-content {
+        padding: 20px;
+    }
+    .card-img-wrapper {
+        padding-top: 54%; /* 1.85:1 aspect on mobile card images */
+    }
+    .card-meta-top, .card-meta-bottom {
+        font-size: 0.5rem;
+        left: 12px;
+        right: 12px;
+    }
+    /* Hide some card meta on mobile */
+    .card-meta-top span:nth-child(2),
+    .card-meta-bottom span:nth-child(2) {
+        display: none;
+    }
+    .timeline-container {
+        gap: 40px;
+    }
+    .timeline-step {
+        padding: 20px 16px;
+        gap: 16px;
+        transform: translateX(0);
+        opacity: 0.5;
+    }
+    .timeline-step.active {
+        opacity: 1;
+    }
+    .timeline-line {
+        left: 16px;
+    }
+    .step-marker {
+        width: 32px;
+        height: 32px;
+    }
+    .step-num {
+        font-size: 0.75rem;
+    }
+    .accordion-header {
+        padding: 20px;
+    }
+    .acc-number {
+        font-size: 0.75rem;
+    }
+    .acc-list {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    .contact-form {
+        gap: 24px;
+    }
+    .form-row {
+        gap: 24px;
+    }
+    /* Hide volume slider on mobile to save player controls space */
+    .volume-slider {
+        display: none;
+    }
+    .controls-left, .controls-right {
+        gap: 8px;
+    }
+    .player-controls {
+        padding: 16px;
+        gap: 12px;
+    }
+    .speed-btn {
+        width: 40px;
+        font-size: 0.6rem;
+    }
+    .notification-toast {
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+        padding: 12px 20px;
+    }
+}
+

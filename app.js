@@ -71,6 +71,10 @@ function initOscilloscopeCanvas() {
             ctx.strokeStyle = wave.color;
             ctx.lineWidth = idx === 0 ? 1.5 : 0.8;
 
+            // Scale wave amplitude dynamically based on viewport height for mobile responsiveness
+            const scale = Math.min(1, height / 900);
+            const waveAmp = wave.amplitude * scale;
+
             for (let x = 0; x < width; x += 2) {
                 // Base sine wave math
                 let rawSine = Math.sin(x * wave.frequency + globalWaveOffset * wave.speed * 50);
@@ -85,11 +89,11 @@ function initOscilloscopeCanvas() {
                     if (distance < 200) {
                         let force = (200 - distance) / 200;
                         // Frequency shift distortion based on vertical distance
-                        mouseDistortion = Math.sin(x * 0.08) * force * wave.amplitude * 0.8;
+                        mouseDistortion = Math.sin(x * 0.08) * force * waveAmp * 0.8;
                     }
                 }
 
-                let y = (height * wave.yOffset) + (rawSine * wave.amplitude) + mouseDistortion;
+                let y = (height * wave.yOffset) + (rawSine * waveAmp) + mouseDistortion;
                 
                 if (x === 0) {
                     ctx.moveTo(x, y);
