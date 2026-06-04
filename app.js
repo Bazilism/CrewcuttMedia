@@ -348,7 +348,7 @@ function initSoundLounge() {
     }
 
     // Attach Synth events
-    const buttons = document.querySelectorAll('button, a.btn-primary, a.btn-secondary, .nav-link, .logo, .filter-btn');
+    const buttons = document.querySelectorAll('button, a.btn-primary, a.btn-secondary, .nav-link, .logo, .filter-btn, .social-link, .meta-link');
     buttons.forEach(el => {
         el.addEventListener('mouseenter', () => playSynthSound('sonar'));
     });
