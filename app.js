@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initOscilloscopeCanvas();
     initCustomCursor();
     initSoundLounge();
-    initPortfolioFilter();
+    loadPortfolioData(); // Dynamically load and populate portfolio grid
     initScrollytelling();
     initCapabilitiesAccordion();
     initStudioWidgets();
@@ -180,16 +180,21 @@ function initCustomCursor() {
         });
     });
 
-    cursorTriggers.forEach(trigger => {
-        trigger.addEventListener('mouseenter', () => {
+    // Event delegation for dynamically added cursor elements
+    document.addEventListener('mouseover', (e) => {
+        const trigger = e.target.closest('[data-cursor]');
+        if (trigger) {
             const type = trigger.getAttribute('data-cursor');
             label.textContent = type;
             cursor.classList.add(type.toLowerCase() === 'play' ? 'playing' : 'viewing');
-        });
+        }
+    });
 
-        trigger.addEventListener('mouseleave', () => {
+    document.addEventListener('mouseout', (e) => {
+        const trigger = e.target.closest('[data-cursor]');
+        if (trigger) {
             cursor.classList.remove('playing', 'viewing');
-        });
+        }
     });
 }
 
@@ -347,20 +352,27 @@ function initSoundLounge() {
         }
     }
 
-    // Attach Synth events
-    const buttons = document.querySelectorAll('button, a.btn-primary, a.btn-secondary, .nav-link, .logo, .filter-btn, .social-link, .meta-link');
-    buttons.forEach(el => {
-        el.addEventListener('mouseenter', () => playSynthSound('sonar'));
+    // Attach Synth events using event delegation for dynamic compatibility
+    document.addEventListener('mouseover', (e) => {
+        const el = e.target.closest('button, a.btn-primary, a.btn-secondary, .nav-link, .logo, .filter-btn, .social-link, .meta-link');
+        if (el && !el.contains(e.relatedTarget)) {
+            playSynthSound('sonar');
+        }
     });
 
-    const panels = document.querySelectorAll('.portfolio-card, .showreel-widget, .accordion-header');
-    panels.forEach(el => {
-        el.addEventListener('mouseenter', () => playSynthSound('drone'));
+    document.addEventListener('mouseover', (e) => {
+        const el = e.target.closest('.portfolio-card, .showreel-widget, .accordion-header');
+        if (el && !el.contains(e.relatedTarget)) {
+            playSynthSound('drone');
+        }
     });
 
-    const theatreTriggers = document.querySelectorAll('.showreel-widget, .modal-close');
-    theatreTriggers.forEach(el => {
-        el.addEventListener('click', () => playSynthSound('cinema'));
+    // Handle theater sounds dynamically on launch and close
+    document.addEventListener('click', (e) => {
+        const trigger = e.target.closest('.showreel-widget, .portfolio-card, .modal-close');
+        if (trigger) {
+            playSynthSound('cinema');
+        }
     });
 
     window.triggerFormSuccessAudio = () => {
@@ -369,8 +381,101 @@ function initSoundLounge() {
 }
 
 /* ==========================================================================
-   4. SHOWCASE PORTFOLIO FILTER
+   4. SHOWCASE PORTFOLIO FILTER & DATA LOADER
    ========================================================================== */
+function loadPortfolioData() {
+    const grid = document.getElementById('portfolio-dynamic-grid');
+    if (!grid) return;
+    
+    fetch('source/media_data.json')
+        .then(res => res.json())
+        .then(data => {
+            window.portfolioItems = data;
+            grid.innerHTML = '';
+            
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'portfolio-card glassmorphic';
+                card.setAttribute('data-category', item.category);
+                card.setAttribute('data-cursor', item.type === 'video' ? 'PLAY' : 'VIEW');
+                card.setAttribute('data-shortcode', item.shortcode);
+                
+                card.innerHTML = `
+                  <div class="card-viewfinder-wrapper">
+                    <div class="card-crop-corner tl"></div>
+                    <div class="card-crop-corner tr"></div>
+                    <div class="card-crop-corner bl"></div>
+                    <div class="card-crop-corner br"></div>
+                    <div class="card-meta-top">
+                      <span>${item.meta_cam}</span>
+                      <span>${item.meta_iso}</span>
+                    </div>
+                    <div class="card-meta-bottom">
+                      <span>${item.meta_lens}</span>
+                      <span>${item.meta_fps}</span>
+                    </div>
+                    <div class="card-img-wrapper">
+                      <img src="${item.image_url}" alt="${item.title}" class="portfolio-img" loading="lazy" />
+                      <div class="card-overlay"></div>
+                    </div>
+                  </div>
+                  <div class="card-content">
+                    <div class="card-header">
+                      <span class="card-tag">${item.tagline}</span>
+                      <span class="card-year">${item.year}</span>
+                    </div>
+                    <h3 class="card-title">${item.title}</h3>
+                    <p class="card-description">${item.description}</p>
+                    <span class="card-link">${item.type === 'video' ? 'Explore Reel →' : 'View Full Image →'}</span>
+                  </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+            
+            // Re-query magnetic targets for mouse snapping on newly added dynamic items
+            rebindMagneticSnaps();
+            
+            // Initialize portfolio filter triggers
+            initPortfolioFilter();
+        })
+        .catch(err => {
+            console.error('Error loading portfolio:', err);
+            grid.innerHTML = '<div class="error-msg">Failed to load archive log feeds.</div>';
+        });
+}
+
+function rebindMagneticSnaps() {
+    const cursor = document.querySelector('.custom-cursor');
+    const magneticTargets = document.querySelectorAll('.portfolio-card, .magnetic-target');
+    
+    magneticTargets.forEach(target => {
+        // Prevent adding duplicate listeners if already bound
+        if (target.classList.contains('snap-bound')) return;
+        target.classList.add('snap-bound');
+        
+        target.addEventListener('mouseenter', () => {
+            cursor.classList.add('hovering');
+        });
+        target.addEventListener('mouseleave', () => {
+            cursor.classList.remove('hovering');
+            target.style.transform = 'translate3d(0, 0, 0)';
+        });
+
+        target.addEventListener('mousemove', (e) => {
+            const rect = target.getBoundingClientRect();
+            const relX = e.clientX - rect.left - (rect.width / 2);
+            const relY = e.clientY - rect.top - (rect.height / 2);
+            
+            const pullLimit = 6;
+            const xVal = (relX / rect.width) * pullLimit;
+            const yVal = (relY / rect.height) * pullLimit;
+            
+            target.style.transform = `translate3d(${xVal}px, ${yVal}px, 0)`;
+        });
+    });
+}
+
 function initPortfolioFilter() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const cards = document.querySelectorAll('.portfolio-card');
@@ -549,8 +654,9 @@ function initTheatreModal() {
     const modal = document.getElementById('showreel-modal');
     const closeBtn = document.querySelector('.modal-close');
     const video = document.getElementById('theatre-video');
+    const image = document.getElementById('theatre-image');
     
-    if (!trigger || !modal || !closeBtn || !video) return;
+    if (!modal || !closeBtn || !video || !image) return;
 
     // Player controls nodes
     const playBtn = modal.querySelector('.play-pause-btn');
@@ -568,19 +674,63 @@ function initTheatreModal() {
     const fullscreenBtn = modal.querySelector('.fullscreen-btn');
     const playerWrapper = modal.querySelector('.custom-video-player');
 
-    // 1. Modal Toggle
-    trigger.addEventListener('click', () => {
+    // 1. Unified Open Theatre function
+    function openTheatre(type, src) {
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
-        video.play().catch(err => console.log('Autoplay blocked'));
-        updatePlayIcons();
-    });
+        
+        if (type === 'video') {
+            image.classList.add('hidden');
+            video.classList.remove('hidden');
+            modal.querySelector('.player-controls').classList.remove('hidden');
+            
+            if (video.src !== src) {
+                video.src = src;
+                video.load();
+            }
+            video.play().catch(err => console.log('Autoplay blocked'));
+            updatePlayIcons();
+        } else {
+            video.pause();
+            video.classList.add('hidden');
+            modal.querySelector('.player-controls').classList.add('hidden');
+            
+            image.src = src;
+            image.classList.remove('hidden');
+        }
+    }
+
+    // Default trigger (Hero showreel)
+    if (trigger) {
+        trigger.addEventListener('click', () => {
+            const showreelSrc = "https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c05fba1b3de4dcc9c940b3cb1c572a1e&profile_id=165&oauth2_token_id=57447761";
+            openTheatre('video', showreelSrc);
+        });
+    }
+
+    // Event delegation for dynamic portfolio card clicks
+    const grid = document.getElementById('portfolio-dynamic-grid');
+    if (grid) {
+        grid.addEventListener('click', (e) => {
+            const card = e.target.closest('.portfolio-card');
+            if (!card) return;
+            
+            const shortcode = card.getAttribute('data-shortcode');
+            if (window.portfolioItems) {
+                const item = window.portfolioItems.find(i => i.shortcode === shortcode);
+                if (item) {
+                    openTheatre(item.type, item.type === 'video' ? item.video_url : item.image_url);
+                }
+            }
+        });
+    }
 
     function closeTheatre() {
         modal.classList.remove('active');
         document.body.style.overflow = '';
         video.pause();
         video.currentTime = 0;
+        image.src = '';
     }
 
     closeBtn.addEventListener('click', closeTheatre);
@@ -625,6 +775,7 @@ function initTheatreModal() {
     }
 
     video.addEventListener('timeupdate', () => {
+        if (video.classList.contains('hidden')) return;
         const percent = (video.currentTime / video.duration) * 100;
         progressFilled.style.width = `${percent}%`;
         progressHandle.style.left = `${percent}%`;
@@ -635,6 +786,7 @@ function initTheatreModal() {
     });
 
     function scrub(e) {
+        if (video.classList.contains('hidden')) return;
         const rect = progressContainer.getBoundingClientRect();
         const scrubTime = ((e.clientX - rect.left) / rect.width) * video.duration;
         video.currentTime = scrubTime;
